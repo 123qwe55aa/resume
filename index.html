@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guocai Lang - Customer Service / Data Analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        fontFamily: {
+          serif: ['Instrument Serif', 'ui-serif', 'Georgia', 'serif'],
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        },
+      } },
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.14.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.14.2/ScrollTrigger.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      background: linear-gradient(180deg, #0A1929 0%, #0F2F47 50%, #1A4565 100%);
+      color: rgb(219 234 254 / 0.86);
+    }
+    #video-bg video {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%; min-height: 100%;
+      object-fit: cover;
+    }
+    body[data-loaded="true"] #loading {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .pointer-on { pointer-events: auto; }
+    .caustics {
+      position: fixed; inset: 0; pointer-events: none; z-index: 1;
+      background:
+        radial-gradient(ellipse 60% 50% at 30% 20%, rgba(150,220,255,0.18), transparent 50%),
+        radial-gradient(ellipse 50% 60% at 80% 60%, rgba(200,240,255,0.10), transparent 60%);
+      animation: caustic 15s ease-in-out infinite alternate;
+    }
+    @keyframes caustic {
+      0% { transform: translate(0,0) scale(1); }
+      50% { transform: translate(-20px,15px) scale(1.05); }
+      100% { transform: translate(15px,-10px) scale(0.98); }
+    }
+    .sunbeam {
+      position: fixed; top: 0; left: 50%; pointer-events: none; z-index: 1;
+      width: 120%; height: 70vh;
+      background: linear-gradient(180deg, rgba(255,240,200,0.10), transparent 70%);
+      transform: translateX(-50%) rotate(8deg);
+      filter: blur(30px);
+    }
+    .scroll-reveal { margin: 0; }
+    .scroll-reveal-text { display: flex; flex-wrap: wrap; margin: 0; }
+    .word { display: inline-block; white-space: pre; }
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(30px);
+      transition:
+        opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: calc(var(--reveal-delay, 0) * 1s);
+    }
+    [data-reveal="visible"] { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body class="min-h-screen overflow-x-hidden antialiased">
+  <div id="video-bg" class="fixed inset-0 z-0 bg-black">
+    <video id="hero-video" muted playsinline preload="auto">
+      <source src="hero.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-[#071526]/50"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-[#071526]/20 via-[#0f2f47]/40 to-[#071526]/80"></div>
+  </div>
+  <div class="caustics"></div>
+  <div class="sunbeam"></div>
+
+  <div id="loading" class="fixed inset-0 z-50 grid place-items-center bg-[#071526] transition-opacity duration-500">
+    <div class="font-serif text-5xl italic text-blue-50/80">surface</div>
+  </div>
+
+  <header class="pointer-events-none fixed inset-x-0 top-0 z-20 px-5 py-5 md:px-8">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between text-xs uppercase tracking-[0.28em] text-blue-50/60">
+      <a href="#top" class="pointer-on">Guocai Lang</a>
+      <div class="hidden gap-8 md:flex">
+        <a class="pointer-on hover:text-blue-50" href="#work">Work</a>
+        <a class="pointer-on hover:text-blue-50" href="#skills">Skills</a>
+        <a class="pointer-on hover:text-blue-50" href="#study">Study</a>
+        <a class="pointer-on hover:text-blue-50" href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top" class="pointer-events-none relative z-10">
+    <section class="mx-auto grid min-h-screen max-w-7xl content-end px-5 pb-16 pt-28 md:px-8 md:pb-20">
+      <div class="max-w-5xl">
+        <p class="mb-6 text-xs uppercase tracking-[0.4em] text-blue-100/55">below the surface / Shenzhen</p>
+        <h1 class="font-serif text-[18vw] leading-[0.82] text-blue-50 md:text-[10rem]">
+          Service in motion.<br />
+          Data in calm water.
+        </h1>
+        <p class="mt-8 max-w-2xl text-lg leading-8 text-blue-100/75 md:text-2xl md:leading-10">
+          A customer service and data analysis professional with experience in delivery operations, complaint resolution, quality assurance, and materials engineering.
+          <span class="font-semibold text-blue-50/90">Guocai turns pressure into clear action.</span>
+        </p>
+        <a href="#contact" class="pointer-on mt-10 inline-flex border-b border-blue-100/55 pb-2 text-sm uppercase tracking-[0.28em] text-blue-50 hover:border-blue-50">descend ↓</a>
+      </div>
+    </section>
+
+    <section class="mx-auto grid min-h-screen max-w-7xl content-center px-5 py-24 md:px-8">
+      <h2 data-scroll-reveal data-text-class="font-serif text-[12vw] leading-[0.9] text-blue-50/90 md:text-[7rem]">
+        Customer concerns are signals below the surface: listen closely, navigate cleanly, then bring the answer back into the light with patience, data, and practical judgment.
+      </h2>
+    </section>
+
+    <section id="work" class="mx-auto grid max-w-7xl gap-14 px-5 py-24 md:grid-cols-[0.8fr_1.2fr] md:px-8">
+      <div data-reveal>
+        <p class="text-xs uppercase tracking-[0.35em] text-blue-100/50">current</p>
+        <h2 class="mt-4 font-serif text-6xl text-blue-50 md:text-8xl">routes / relations</h2>
+      </div>
+      <div class="space-y-12 text-blue-100/78">
+        <article data-reveal style="--reveal-delay: 0.1">
+          <p class="text-sm uppercase tracking-[0.3em] text-blue-50/50">Meituan / Aug 2025 - Sep 2025</p>
+          <h3 class="mt-3 text-3xl text-blue-50">Delivery Rider</h3>
+          <p class="mt-4 max-w-2xl leading-8">Executed food order delivery across Shenzhen, used GPS routing for efficient movement, and confirmed order details with customers before issues could drift.</p>
+        </article>
+        <article data-reveal style="--reveal-delay: 0.2">
+          <p class="text-sm uppercase tracking-[0.3em] text-blue-50/50">Hellobike / Aug 2024 - Sep 2024</p>
+          <h3 class="mt-3 text-3xl text-blue-50">Customer Service Representative</h3>
+          <p class="mt-4 max-w-2xl leading-8">Resolved complaints promptly, supported repeat business through patient communication, and gave customers personalized help when the path was unclear.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" class="mx-auto grid max-w-7xl gap-10 px-5 py-24 md:grid-cols-3 md:px-8">
+      <div data-reveal>
+        <p class="text-xs uppercase tracking-[0.35em] text-blue-100/50">depth</p>
+        <h2 class="mt-4 font-serif text-6xl text-blue-50">signal set</h2>
+      </div>
+      <div data-reveal style="--reveal-delay: 0.1" class="space-y-5 text-2xl text-blue-50/82">
+        <p>Data analysis</p>
+        <p>Project management</p>
+        <p>Technical writing</p>
+      </div>
+      <div data-reveal style="--reveal-delay: 0.2" class="space-y-5 text-2xl text-blue-50/82">
+        <p>Materials testing</p>
+        <p>Customer service</p>
+        <p>Quality assurance</p>
+      </div>
+    </section>
+
+    <section id="study" class="mx-auto grid max-w-7xl gap-12 px-5 py-24 md:grid-cols-[1fr_1fr] md:px-8">
+      <div data-reveal>
+        <p class="text-xs uppercase tracking-[0.35em] text-blue-100/50">Dalian Polytechnic University</p>
+        <h2 class="mt-4 font-serif text-6xl leading-none text-blue-50 md:text-8xl">materials, method, patience</h2>
+      </div>
+      <div data-reveal style="--reveal-delay: 0.15" class="self-end text-xl leading-9 text-blue-100/78">
+        <p>Bachelor of Science in Non-Metallic Inorganic Materials Engineering, expected June 2026.</p>
+        <p class="mt-6">English: professional. Mandarin and Cantonese: native / bilingual.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="pointer-events-none relative z-10 mx-auto grid max-w-7xl gap-10 px-5 py-20 text-blue-100/70 md:grid-cols-[1fr_1fr] md:px-8">
+    <h2 class="font-serif text-7xl leading-none text-blue-50 md:text-9xl">surface when ready.</h2>
+    <div class="grid content-between gap-12 md:justify-self-end">
+      <a class="pointer-on text-2xl text-blue-50 hover:text-blue-100" href="mailto:tobyrunninglc@gmail.com">tobyrunninglc@gmail.com</a>
+      <div class="grid grid-cols-2 gap-8 text-sm uppercase tracking-[0.24em] text-blue-100/55">
+        <p>Shenzhen</p>
+        <p>Dalian</p>
+        <p>Customer service</p>
+        <p>Data analysis</p>
+      </div>
+      <p class="text-xs uppercase tracking-[0.3em] text-blue-100/45">© 2026 Guocai Lang</p>
+    </div>
+  </footer>
+
+  <script>
+    const VIDEO_URL = 'hero.mp4';
+    const video = document.getElementById('hero-video');
+    let isLoaded = false;
+    const handleLoaded = () => {
+      if (isLoaded) return;
+      isLoaded = true;
+      document.body.dataset.loaded = 'true';
+    };
+    if (video) {
+      video.addEventListener('loadeddata', handleLoaded);
+      video.addEventListener('canplay', handleLoaded);
+      video.addEventListener('canplaythrough', handleLoaded);
+      video.load();
+    }
+    setTimeout(handleLoaded, 3000);
+    window.addEventListener('scroll', () => {
+      if (!isLoaded || !video || !video.duration || video.seeking) return;
+      const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      const scrollFraction = Math.max(0, Math.min(1, window.scrollY / maxScroll));
+      video.currentTime = scrollFraction * video.duration;
+    }, { passive: true });
+
+    if (window.gsap && window.ScrollTrigger) {
+      gsap.registerPlugin(ScrollTrigger);
+      document.querySelectorAll('[data-scroll-reveal]').forEach((el) => {
+        const text = el.textContent || '';
+        el.textContent = '';
+        el.classList.add('scroll-reveal');
+        const p = document.createElement('p');
+        p.className = 'scroll-reveal-text ' + (el.dataset.textClass || '');
+        text.split(/(\s+)/).forEach((part) => {
+          if (!part) return;
+          const span = document.createElement('span');
+          span.className = 'word';
+          span.textContent = part;
+          p.appendChild(span);
+        });
+        el.appendChild(p);
+        gsap.fromTo(el, { rotate: 3, transformOrigin: '0% 50%' },
+          { rotate: 0, ease: 'none', scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom bottom', scrub: true } });
+        gsap.fromTo(p.querySelectorAll('.word'), { opacity: 0.1 },
+          { opacity: 1, stagger: 0.05, ease: 'none', scrollTrigger: { trigger: el, start: 'top bottom-=20%', end: 'bottom bottom', scrub: true } });
+        gsap.fromTo(p.querySelectorAll('.word'), { filter: 'blur(4px)' },
+          { filter: 'blur(0px)', stagger: 0.05, ease: 'none', scrollTrigger: { trigger: el, start: 'top bottom-=20%', end: 'bottom bottom', scrub: true } });
+      });
+    }
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.dataset.reveal = 'visible';
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '-50px' });
+    document.querySelectorAll('[data-reveal]').forEach((el) => revealObserver.observe(el));
+  </script>
+</body>
+</html>
