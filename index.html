@@ -169,13 +169,9 @@
       position: absolute;
       inset: 44px 20px;
       z-index: -1;
-      border: 1px solid rgba(255, 255, 255, .22);
-      background:
-        linear-gradient(135deg, rgba(250, 250, 250, .15), rgba(238, 238, 238, .07)),
-        rgba(230, 230, 230, .08);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 24px 90px rgba(0,0,0,.16);
-      backdrop-filter: blur(10px) saturate(120%);
-      -webkit-backdrop-filter: blur(10px) saturate(120%);
+      border: 1px solid rgba(255, 255, 255, .12);
+      background: rgba(15, 15, 15, .35);
+      box-shadow: 0 24px 90px rgba(0,0,0,.12);
     }
     main > section:first-child {
       min-height: 100vh;
@@ -231,10 +227,11 @@
       align-content: center;
     }
     main > section:nth-child(2) h2 {
-      font-size: clamp(54px, 9vw, 112px);
-      line-height: .9;
-      color: rgba(250, 250, 250, .92);
+      font-size: clamp(28px, 3.5vw, 42px);
+      line-height: 1.4;
+      color: rgba(250, 250, 250, .82);
       font-weight: 400;
+      max-width: 900px;
     }
     #credentials, #work, #projects, #study, footer {
       display: grid;
@@ -261,21 +258,17 @@
       gap: 20px;
     }
     #credentials article {
-      border: 1px solid rgba(255, 255, 255, .24);
-      background: rgba(238, 238, 238, .12);
+      border: 1px solid rgba(255, 255, 255, .15);
+      background: rgba(20, 20, 20, .4);
       padding: 24px;
-      backdrop-filter: blur(10px) saturate(118%);
-      -webkit-backdrop-filter: blur(10px) saturate(118%);
     }
     #credentials article:nth-child(2) {
-      border-color: rgba(255, 255, 255, .34);
-      background:
-        linear-gradient(135deg, rgba(255, 255, 255, .20), rgba(230, 230, 230, .09)),
-        rgba(238, 238, 238, .13);
+      border-color: rgba(255, 255, 255, .22);
+      background: rgba(30, 30, 30, .45);
     }
     #credentials article:nth-child(3) {
       grid-column: 1 / -1;
-      background: rgba(238, 238, 238, .10);
+      background: rgba(20, 20, 20, .35);
     }
     #credentials h3, #work h3, #projects h3 {
       margin-top: 12px;
@@ -445,10 +438,10 @@
       </div>
     </section>
 
-    <section class="mx-auto grid min-h-screen max-w-7xl content-center px-5 py-24 md:px-8">
-      <h2 data-scroll-reveal data-text-class="font-serif text-[12vw] leading-[0.9] text-blue-50/90 md:text-[7rem]">
+    <section class="mx-auto grid max-w-7xl content-center px-5 py-24 md:px-8">
+      <p data-scroll-reveal data-text-class="font-serif text-2xl leading-loose text-blue-50/85 md:text-4xl md:leading-[1.6]">
         <span data-i18n="statement">教育背景、证书许可和现场经历是第一信号：材料工程基础、雅思 6.0、驾驶证，以及服务运营中的稳定执行。</span>
-      </h2>
+      </p>
     </section>
 
     <section id="credentials" class="mx-auto grid max-w-7xl gap-10 px-5 py-24 md:grid-cols-[0.85fr_1.15fr] md:px-8">
@@ -457,18 +450,18 @@
         <h2 class="mt-4 font-serif text-6xl leading-none text-blue-50 md:text-8xl" data-i18n="credentials.title">教育 / 证书</h2>
       </div>
       <div class="grid gap-5 text-blue-100/78 md:grid-cols-2">
-        <article data-reveal style="--reveal-delay: 0.1" class="border border-blue-100/15 bg-blue-50/[0.06] p-6 backdrop-blur">
+        <article data-reveal style="--reveal-delay: 0.1" class="border-l-2 border-blue-100/30 pl-6">
           <p class="text-xs uppercase tracking-[0.32em] text-teal-200/70" data-i18n="edu.school">大连工业大学</p>
           <h3 class="mt-4 text-3xl font-semibold text-blue-50" data-i18n="edu.degree">无机非金属材料工程 本科</h3>
           <p class="mt-4 leading-7" data-i18n="edu.body">预计 2026 年 6 月毕业，具备材料工程、质量意识与技术文档基础。</p>
         </article>
-        <article data-reveal style="--reveal-delay: 0.18" class="border border-teal-200/25 bg-teal-200/[0.10] p-6 backdrop-blur">
+        <article data-reveal style="--reveal-delay: 0.18" class="border-l-2 border-teal-200/40 pl-6">
           <p class="text-xs uppercase tracking-[0.32em] text-teal-100/75" data-i18n="cert.eyebrow">证书和许可</p>
           <h3 class="mt-4 text-4xl font-semibold text-blue-50">IELTS 6.0</h3>
           <p class="mt-3 text-2xl text-blue-50/90" data-i18n="cert.license">驾驶证</p>
           <p class="mt-4 leading-7" data-i18n="cert.body">英语具备工作沟通能力；普通话、粤语母语 / 双语。</p>
         </article>
-        <article data-reveal style="--reveal-delay: 0.24" class="border border-blue-100/15 bg-blue-50/[0.05] p-6 backdrop-blur md:col-span-2">
+        <article data-reveal style="--reveal-delay: 0.24" class="border-l-2 border-blue-100/30 pl-6 md:col-span-2">
           <p class="text-xs uppercase tracking-[0.32em] text-blue-100/50" data-i18n="course.eyebrow">核心课程</p>
           <p class="mt-4 text-xl leading-9 text-blue-50/86" data-i18n="course.body">高等数学、大学物理、玻璃工业窑炉设计、无机材料科学基础、机械设计基础等专业课程。</p>
         </article>
