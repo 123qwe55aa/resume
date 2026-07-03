@@ -25,7 +25,7 @@
       transform: translate(-50%, -50%);
       min-width: 100%; min-height: 100%;
       object-fit: cover;
-      filter: brightness(.68) saturate(.9) contrast(.98);
+      filter: brightness(.88) saturate(1) contrast(.98);
     }
     #video-bg {
       position: fixed;
@@ -66,6 +66,15 @@
       0% { transform: translate(0,0) scale(1); }
       50% { transform: translate(-20px,15px) scale(1.05); }
       100% { transform: translate(15px,-10px) scale(0.98); }
+    }
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+    .typing-cursor::after {
+      content: "|";
+      animation: blink 0.8s infinite;
+      font-weight: 300;
     }
     .sunbeam {
       position: fixed; top: 0; left: 50%; pointer-events: none; z-index: 1;
@@ -109,7 +118,7 @@
       letter-spacing: .28em;
       text-transform: uppercase;
       color: rgba(250, 250, 250, .76);
-      text-shadow: 0 1px 18px rgba(0, 0, 0, .45);
+      text-shadow: 0 1px 8px rgba(0, 0, 0, .25);
     }
     nav > div {
       display: flex;
@@ -126,10 +135,10 @@
       align-items: center;
       gap: 2px;
       padding: 3px;
-      border: 1px solid rgba(255,255,255,.22);
-      background: rgba(238,238,238,.10);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(238,238,238,.06);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
     }
     .locale-switch button {
       appearance: none;
@@ -162,23 +171,21 @@
       padding: 96px 32px;
       position: relative;
       isolation: isolate;
+      min-height: 100vh;
+      display: grid;
+      align-content: center;
     }
     main > section:not(:first-child)::before,
     footer::before {
-      content: "";
-      position: absolute;
-      inset: 44px 20px;
-      z-index: -1;
-      border: 1px solid rgba(255, 255, 255, .12);
-      background: rgba(15, 15, 15, .35);
-      box-shadow: 0 24px 90px rgba(0,0,0,.12);
+      content: none;
     }
     main > section:first-child {
-      min-height: 100vh;
+      height: 100vh;
       display: grid;
-      align-content: end;
+      align-content: center;
       padding-top: 112px;
       padding-bottom: 80px;
+      overflow: hidden;
     }
     main > section:first-child > div { max-width: 1120px; }
     main > section:first-child p:first-child,
@@ -188,7 +195,7 @@
       letter-spacing: .34em;
       text-transform: uppercase;
       color: rgba(244, 244, 244, .58);
-      text-shadow: 0 1px 14px rgba(0,0,0,.6);
+      text-shadow: 0 1px 4px rgba(0,0,0,.35);
     }
     h1 {
       margin-top: 24px;
@@ -196,7 +203,7 @@
       line-height: .94;
       color: rgba(248, 250, 252, .98);
       font-weight: 400;
-      text-shadow: 0 10px 70px rgba(0,0,0,.62);
+      text-shadow: 0 2px 12px rgba(0,0,0,.40);
     }
     main > section:first-child p:nth-of-type(2) {
       margin-top: 32px;
@@ -204,7 +211,7 @@
       font-size: clamp(18px, 2vw, 24px);
       line-height: 1.65;
       color: rgba(245, 247, 250, .88);
-      text-shadow: 0 2px 22px rgba(0,0,0,.55);
+      text-shadow: 0 1px 6px rgba(0,0,0,.35);
     }
     main > section:first-child span {
       color: rgba(250, 250, 250, .96);
@@ -220,11 +227,6 @@
       letter-spacing: .28em;
       text-transform: uppercase;
       color: rgba(250, 250, 250, .95);
-    }
-    main > section:nth-child(2) {
-      min-height: 100vh;
-      display: grid;
-      align-content: center;
     }
     main > section:nth-child(2) h2 {
       font-size: clamp(28px, 3.5vw, 42px);
@@ -318,7 +320,7 @@
       font-size: 22px;
       line-height: 1.75;
     }
-    #study div:last-child p + p { margin-top: 24px; }
+    #study div:last-child p + p { margin-top: 40px; }
     footer {
       padding-top: 80px;
       padding-bottom: 80px;
@@ -331,7 +333,7 @@
     }
     footer > div > div:first-child {
       display: grid;
-      gap: 16px;
+      gap: 24px;
     }
     footer a, footer p.text-xl {
       pointer-events: auto;
@@ -438,12 +440,6 @@
       </div>
     </section>
 
-    <section class="mx-auto grid max-w-7xl content-center px-5 py-24 md:px-8">
-      <p data-scroll-reveal data-text-class="font-serif text-2xl leading-loose text-blue-50/85 md:text-4xl md:leading-[1.6]">
-        <span data-i18n="statement">教育背景、证书许可和现场经历是第一信号：材料工程基础、雅思 6.0、驾驶证，以及服务运营中的稳定执行。</span>
-      </p>
-    </section>
-
     <section id="credentials" class="mx-auto grid max-w-7xl gap-10 px-5 py-24 md:grid-cols-[0.85fr_1.15fr] md:px-8">
       <div data-reveal>
         <p class="text-xs uppercase tracking-[0.35em] text-blue-100/50" data-i18n="credentials.eyebrow">优先展示</p>
@@ -543,7 +539,7 @@
   </main>
 
   <footer id="contact" class="pointer-events-none relative z-10 mx-auto grid max-w-7xl gap-10 px-5 py-20 text-blue-100/70 md:grid-cols-[1fr_1fr] md:px-8">
-    <h2 class="font-serif text-7xl leading-none text-blue-50 md:text-9xl" data-i18n="footer.title">准备好就联系。</h2>
+    <h2 class="font-serif text-7xl leading-none text-blue-50 md:text-9xl" data-i18n="footer.title" id="typing-title">在线等，欢迎联系</h2>
     <div class="grid content-between gap-12 md:justify-self-end">
       <div class="space-y-4">
         <a class="pointer-on block text-2xl text-blue-50 hover:text-blue-100" href="mailto:tobyrunninglc@gmail.com">tobyrunninglc@gmail.com</a>
@@ -763,6 +759,95 @@
       });
     }, { rootMargin: '-50px' });
     document.querySelectorAll('[data-reveal]').forEach((el) => revealObserver.observe(el));
+
+    // Loop typing effect for footer title
+    const typingTitle = document.getElementById('typing-title');
+    if (typingTitle) {
+      const texts = {
+        zh: '在线等，欢迎联系',
+        en: 'Online now — reach out'
+      };
+      let currentLang = 'zh';
+      let typingActive = false;
+      let typingTimers = [];
+
+      const clearTimers = () => {
+        typingTimers.forEach(t => clearTimeout(t));
+        typingTimers = [];
+      };
+
+      const startLoop = () => {
+        clearTimers();
+        const fullText = texts[currentLang] || texts.zh;
+        typingTitle.textContent = '';
+        typingTitle.classList.add('typing-cursor');
+
+        const typeForward = () => {
+          let i = 0;
+          const step = () => {
+            if (i < fullText.length) {
+              typingTitle.textContent = fullText.slice(0, i + 1);
+              i++;
+              typingTimers.push(setTimeout(step, 80));
+            } else {
+              typingTimers.push(setTimeout(erase, 2000));
+            }
+          };
+          step();
+        };
+
+        const erase = () => {
+          let i = fullText.length;
+          const step = () => {
+            if (i > 0) {
+              i--;
+              typingTitle.textContent = fullText.slice(0, i);
+              typingTimers.push(setTimeout(step, 50));
+            } else {
+              typingTimers.push(setTimeout(typeForward, 300));
+            }
+          };
+          step();
+        };
+
+        typeForward();
+      };
+
+      const stopLoop = () => {
+        clearTimers();
+        typingTitle.classList.remove('typing-cursor');
+        typingTitle.textContent = texts[currentLang] || texts.zh;
+      };
+
+      const typingObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (!typingActive) {
+              typingActive = true;
+              startLoop();
+            }
+          } else {
+            if (typingActive) {
+              typingActive = false;
+              stopLoop();
+            }
+          }
+        });
+      }, { threshold: 0.2 });
+      typingObserver.observe(typingTitle);
+
+      // Update text on locale change
+      document.querySelectorAll('[data-locale]').forEach((button) => {
+        button.addEventListener('click', () => {
+          currentLang = button.dataset.locale === 'en' ? 'en' : 'zh';
+          if (typingActive) {
+            startLoop();
+          } else {
+            typingTitle.textContent = texts[currentLang] || texts.zh;
+          }
+        });
+      });
+    }
   </script>
 </body>
 </html>
