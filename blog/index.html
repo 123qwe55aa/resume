@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>精读 · 梁国才</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23071526'/%3E%3Ccircle cx='8' cy='8' r='4' fill='%2399f6e4'/%3E%3C/svg%3E" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: #faf9f7;
+      color: #1a1a1a;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    p, h1, h2, h3 { margin: 0; }
+
+    /* Header */
+    .header {
+      border-bottom: 1px solid #e8e6e3;
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .header-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-title {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+    .header-title em {
+      font-style: normal;
+      color: #c73e3e;
+    }
+    .header-nav a {
+      font-size: 14px;
+      color: #666;
+      margin-left: 20px;
+      transition: color .2s;
+    }
+    .header-nav a:hover { color: #1a1a1a; }
+
+    /* Hero */
+    .hero {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 60px 24px 40px;
+    }
+    .hero h1 {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .hero p {
+      font-size: 16px;
+      color: #666;
+      line-height: 1.6;
+      max-width: 520px;
+    }
+
+    /* Article List */
+    .articles {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .article-card {
+      display: block;
+      padding: 24px 0;
+      border-bottom: 1px solid #eee;
+      transition: opacity .2s;
+    }
+    .article-card:hover { opacity: .7; }
+    .article-card:last-child { border: none; }
+    .article-meta {
+      font-size: 13px;
+      color: #999;
+      margin-bottom: 6px;
+    }
+    .article-card h2 {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 8px;
+      letter-spacing: -0.2px;
+    }
+    .article-excerpt {
+      font-size: 15px;
+      color: #666;
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .article-tags {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      font-size: 12px;
+      padding: 2px 10px;
+      border-radius: 12px;
+      background: #f0eeeb;
+      color: #666;
+    }
+    .tag.ai { background: #e8f4f0; color: #1a7a5a; }
+    .tag.psychology { background: #f0e8f4; color: #7a3a8a; }
+    .tag.philosophy { background: #f4ede8; color: #8a6a3a; }
+    .tag.growth { background: #e8f0f4; color: #3a6a8a; }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 80px 24px;
+      color: #999;
+    }
+    .empty-state p { font-size: 15px; line-height: 1.6; }
+    .empty-state .emoji { font-size: 48px; margin-bottom: 16px; display: block; }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid #e8e6e3;
+      padding: 24px;
+      text-align: center;
+      font-size: 13px;
+      color: #999;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 28px; }
+      .hero { padding: 40px 20px 30px; }
+      .articles { padding: 0 20px 60px; }
+      .header-inner { padding: 12px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <a href="/blog/" class="header-title">精读<em>·</em>笔记</a>
+    <div class="header-nav">
+      <a href="/">简历</a>
+      <a href="/blog/">精读</a>
+    </div>
+  </div>
+</div>
+
+<div class="hero">
+  <h1>双语精读</h1>
+  <p>每日精选优质文章，英文原文 + 中文对照翻译。关于成长、心理、哲学与创造力。</p>
+</div>
+
+<div class="articles" id="article-list">
+  <div class="empty-state">
+    <span class="emoji">📖</span>
+    <p>文章正在路上<br/>Pipeline 即将上线</p>
+  </div>
+</div>
+
+<div class="footer">
+  <span>梁国才 · 精读笔记</span>
+</div>
+
+<script>
+// Fetch article index from CDN
+(async function() {
+  try {
+    const res = await fetch('https://cdn.tobyleons.xyz/blog/index.json');
+    if (!res.ok) throw new Error('not found');
+    const articles = await res.json();
+    const container = document.getElementById('article-list');
+    container.innerHTML = articles.map(a => `
+      <a href="https://cdn.tobyleons.xyz/blog/${a.slug}/" class="article-card" target="_blank">
+        <div class="article-meta">${a.date} · ${a.source}</div>
+        <h2>${a.title}</h2>
+        <div class="article-excerpt">${a.excerpt}</div>
+        <div class="article-tags">
+          ${(a.tags || []).map(t => `<span class="tag ${t.toLowerCase()}">${t}</span>`).join('')}
+        </div>
+      </a>
+    `).join('');
+  } catch(e) {
+    // Keep empty state if CDN not ready yet
+    console.log('Articles not yet available:', e.message);
+  }
+})();
+</script>
+
+</body>
+</html>
