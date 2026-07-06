@@ -389,6 +389,212 @@
       footer > div { justify-self: stretch; }
       footer > div > div:nth-child(2) { grid-template-columns: 1fr; }
     }
+    /* FOOTER-UPGRADE-START */
+    /* Footer layout upgrade: contact / resume / other sections */
+    footer#contact {
+      width: 100%;
+      max-width: none;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      display: block;
+      align-content: initial;
+      color: rgba(238, 238, 238, .74);
+    }
+    footer#contact::before { content: none; }
+    .footer-shell {
+      width: min(100%, 1280px);
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 96px 32px 72px;
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 56px;
+      align-items: center;
+      pointer-events: none;
+    }
+    .footer-hero {
+      align-self: start;
+      position: sticky;
+      top: 120px;
+    }
+    .footer-eyebrow {
+      font-size: 12px;
+      letter-spacing: .34em;
+      text-transform: uppercase;
+      color: rgba(244, 244, 244, .52);
+    }
+    .footer-hero h2 {
+      margin-top: 20px;
+      font-size: clamp(54px, 7vw, 92px);
+      line-height: .95;
+      font-weight: 400;
+      color: rgba(250, 250, 250, .98);
+      text-shadow: 0 2px 14px rgba(0,0,0,.42);
+    }
+    .footer-intro {
+      margin-top: 28px;
+      max-width: 480px;
+      font-size: 18px;
+      line-height: 1.85;
+      color: rgba(238, 238, 238, .72);
+    }
+    .footer-sections {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      font-size: inherit;
+      letter-spacing: normal;
+      text-transform: none;
+      color: inherit;
+    }
+    .footer-card {
+      pointer-events: auto;
+      border: 1px solid rgba(255,255,255,.14);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.035)),
+        rgba(16,16,16,.42);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      padding: 24px;
+      transition: transform .35s ease, border-color .35s ease, background .35s ease;
+    }
+    .footer-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,255,255,.28);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.14), rgba(255,255,255,.045)),
+        rgba(18,18,18,.48);
+    }
+    .footer-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+    .footer-card-head span {
+      font-size: 12px;
+      letter-spacing: .28em;
+      color: rgba(153,246,228,.72);
+    }
+    .footer-card-head h3 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", ui-serif, serif;
+      font-size: 30px;
+      line-height: 1.1;
+      font-weight: 400;
+      color: rgba(250,250,250,.96);
+    }
+    .contact-list {
+      display: grid;
+      gap: 10px;
+    }
+    .contact-row {
+      display: grid;
+      grid-template-columns: 96px minmax(0, 1fr);
+      gap: 18px;
+      align-items: baseline;
+      padding: 12px 0;
+      border-top: 1px solid rgba(255,255,255,.10);
+    }
+    .contact-row span {
+      font-size: 11px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: rgba(238,238,238,.48);
+    }
+    .contact-row strong {
+      font-size: 16px;
+      font-weight: 500;
+      color: rgba(250,250,250,.88);
+      overflow-wrap: anywhere;
+    }
+    .contact-row:hover strong {
+      color: rgba(255,255,255,.98);
+    }
+    .resume-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .resume-button {
+      display: grid;
+      gap: 8px;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.055);
+      transition: transform .3s ease, border-color .3s ease, background .3s ease;
+    }
+    .resume-button.primary {
+      background: rgba(153,246,228,.16);
+      border-color: rgba(153,246,228,.35);
+    }
+    .resume-button span {
+      font-size: 17px;
+      color: rgba(250,250,250,.96);
+    }
+    .resume-button em {
+      font-size: 11px;
+      font-style: normal;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(238,238,238,.52);
+    }
+    .resume-button:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.34);
+    }
+    .footer-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .footer-tags span {
+      padding: 8px 11px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.055);
+      font-size: 12px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(238,238,238,.72);
+    }
+    .footer-legal {
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      display: grid;
+      gap: 10px;
+      font-size: 11px;
+      letter-spacing: .14em;
+      color: rgba(238,238,238,.42);
+    }
+    .footer-legal div {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-legal a:hover {
+      color: rgba(255,255,255,.72);
+    }
+    @media (max-width: 760px) {
+      .footer-shell {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        padding: 84px 20px 56px;
+      }
+      .footer-hero {
+        position: static;
+      }
+      .resume-actions {
+        grid-template-columns: 1fr;
+      }
+      .contact-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+    }
+    /* FOOTER-UPGRADE-END */
   </style>
 </head>
 <body class="min-h-screen overflow-x-hidden antialiased">
@@ -416,8 +622,8 @@
           <a class="pointer-on hover:text-blue-50" href="#projects" data-i18n="nav.projects">项目</a>
           <a class="pointer-on hover:text-blue-50" href="#skills" data-i18n="nav.skills">能力</a>
           <a class="pointer-on hover:text-blue-50" href="#contact" data-i18n="nav.contact">联系</a>
+          <a class="pointer-on hover:text-blue-50" href="https://cdn.tobyleons.xyz/blog/index.html" target="_blank">📖 精读</a>
         </div>
-        <a class="pointer-on hover:text-blue-50" href="/blog/" data-i18n="nav.blog" style="margin-right:8px">精读</a>
         <div class="locale-switch" aria-label="Language">
           <button type="button" data-locale="zh" aria-pressed="true">中文</button>
           <button type="button" data-locale="en" aria-pressed="false">EN</button>
@@ -549,38 +755,89 @@
     </section>
   </main>
 
-  <footer id="contact" class="pointer-events-none relative z-10 mx-auto grid max-w-7xl gap-10 px-5 py-20 text-blue-100/70 md:grid-cols-[1fr_1fr] md:px-8">
-    <h2 class="font-serif text-7xl leading-none text-blue-50 md:text-9xl" data-i18n="footer.title" id="typing-title">在线等，欢迎联系</h2>
-    <div class="grid content-between gap-12 md:justify-self-end">
-      <div class="space-y-4">
-        <a class="pointer-on block text-2xl text-blue-50 hover:text-blue-100" href="mailto:tobyrunninglc@gmail.com">tobyrunninglc@gmail.com</a>
-        <a class="pointer-on block text-xl text-blue-50/85 hover:text-blue-100" href="https://github.com/123qwe55aa">github.com/123qwe55aa</a>
-        <a class="pointer-on block text-xl text-blue-50/85 hover:text-blue-100" href="https://tobyleons.xyz">tobyleons.xyz</a>
-        <p class="text-xl text-blue-50/75">13356567960</p>
+  <footer id="contact" class="pointer-events-none relative z-10">
+    <div class="footer-shell">
+      <div class="footer-hero" data-reveal>
+        <p class="footer-eyebrow">CONTACT / RESUME / INFO</p>
+        <h2 id="typing-title" class="font-serif" data-i18n="footer.title">&#22312;&#32447;&#31561;&#65292;&#27426;&#36814;&#32852;&#31995;</h2>
+        <p class="footer-intro">
+          &#27426;&#36814;&#36890;&#36807;&#37038;&#20214;&#12289;GitHub &#25110;&#20010;&#20154;&#32593;&#31449;&#32852;&#31995;&#25105;&#12290;&#31616;&#21382;&#19979;&#36733;&#21644;&#22522;&#30784;&#20449;&#24687;&#24050;&#32463;&#20998;&#21306;&#25972;&#29702;&#65292;&#26041;&#20415;&#24555;&#36895;&#26597;&#30475;&#12290;
+        </p>
       </div>
-      <div class="flex flex-wrap gap-x-6 gap-y-2">
-        <a class="pointer-on inline-flex items-center gap-2 text-sm text-blue-100/75 hover:text-blue-50" href="https://cdn.tobyleons.xyz/Guocai_Liang_English_Resume.pptx" target="_blank" rel="noopener">
-          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-          English Resume
-        </a>
-        <a class="pointer-on inline-flex items-center gap-2 text-sm text-blue-100/75 hover:text-blue-50" href="https://cdn.tobyleons.xyz/Guocai_Liang_中文简历_V2.pptx" target="_blank" rel="noopener">
-          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-          中文简历
-        </a>
-      </div>
-      <div class="grid grid-cols-2 gap-8 text-sm uppercase tracking-[0.24em] text-blue-100/55">
-        <p data-i18n="footer.jiangmen">江门</p>
-        <p data-i18n="footer.dalian">大连</p>
-        <p data-i18n="footer.shenzhen">深圳</p>
-        <p>IELTS 6.0</p>
-        <p data-i18n="footer.license">驾驶证</p>
-        <p data-i18n="footer.materials">材料工程</p>
-        <p data-i18n="footer.operations">服务运营</p>
-      </div>
-      <p class="text-xs uppercase tracking-[0.3em] text-blue-100/45">© 2026 Guocai Liang</p>
-      <div class="flex flex-wrap gap-x-4 gap-y-1 text-[10px] tracking-[0.15em] text-blue-100/35">
-        <a class="pointer-on hover:text-blue-100/60" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">粤ICP备2026085178号</a>
-        <a class="pointer-on hover:text-blue-100/60" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44070502000728" target="_blank" rel="noopener">粤公网安备44070502000728号</a>
+
+      <div class="footer-sections">
+        <section class="footer-card contact-card" data-reveal style="--reveal-delay: 0.1">
+          <div class="footer-card-head">
+            <span>01</span>
+            <h3>&#32852;&#31995;&#26041;&#24335;</h3>
+          </div>
+
+          <div class="contact-list">
+            <a class="contact-row pointer-on" href="mailto:tobyrunninglc@gmail.com">
+              <span>Email</span>
+              <strong>tobyrunninglc@gmail.com</strong>
+            </a>
+
+            <a class="contact-row pointer-on" href="https://github.com/123qwe55aa" target="_blank" rel="noopener">
+              <span>GitHub</span>
+              <strong>github.com/123qwe55aa</strong>
+            </a>
+
+            <a class="contact-row pointer-on" href="https://tobyleons.xyz" target="_blank" rel="noopener">
+              <span>Website</span>
+              <strong>tobyleons.xyz</strong>
+            </a>
+
+            <div class="contact-row">
+              <span>Phone</span>
+              <strong>13356567960</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="footer-card resume-card" data-reveal style="--reveal-delay: 0.18">
+          <div class="footer-card-head">
+            <span>02</span>
+            <h3>&#31616;&#21382;&#19979;&#36733;</h3>
+          </div>
+
+          <div class="resume-actions">
+            <a class="resume-button primary pointer-on" href="https://cdn.tobyleons.xyz/Guocai_Liang_English_Resume.pptx" target="_blank" rel="noopener">
+              <span>English Resume</span>
+              <em>Download PPTX</em>
+            </a>
+
+            <a class="resume-button pointer-on" href="https://cdn.tobyleons.xyz/Guocai_Liang_%E4%B8%AD%E6%96%87%E7%AE%80%E5%8E%86_V2.pptx" target="_blank" rel="noopener">
+              <span>&#20013;&#25991;&#31616;&#21382;</span>
+              <em>&#19979;&#36733; PPTX</em>
+            </a>
+          </div>
+        </section>
+
+        <section class="footer-card other-card" data-reveal style="--reveal-delay: 0.26">
+          <div class="footer-card-head">
+            <span>03</span>
+            <h3>&#20854;&#20182;&#20449;&#24687;</h3>
+          </div>
+
+          <div class="footer-tags">
+            <span>&#27743;&#38376;</span>
+            <span>&#22823;&#36830;</span>
+            <span>&#28145;&#22323;</span>
+            <span>IELTS 6.0</span>
+            <span>&#39550;&#39542;&#35777;</span>
+            <span>&#26448;&#26009;&#24037;&#31243;</span>
+            <span>&#26381;&#21153;&#36816;&#33829;</span>
+          </div>
+
+          <div class="footer-legal">
+            <p>&copy; 2026 Guocai Liang</p>
+            <div>
+              <a class="pointer-on" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">&#31908;ICP&#22791;2026085178&#21495;</a>
+              <a class="pointer-on" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44070502000728" target="_blank" rel="noopener">&#31908;&#20844;&#32593;&#23433;&#22791;44070502000728&#21495;</a>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   </footer>
