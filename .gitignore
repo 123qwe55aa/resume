@@ -1,0 +1,6 @@
+# cdn branch - single HTML site
+# All static assets served via CDN
+*
+!/index.html
+!/blog/
+!/blog/**
