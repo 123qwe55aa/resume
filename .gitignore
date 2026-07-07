@@ -1,6 +1,8 @@
 # cdn branch - single HTML site
-# All static assets served via CDN
+# Only the static HTML build is tracked; assets are served via CDN
 *
 !/index.html
-!/blog/
-!/blog/**
+
+# Assets served via CDN (Tencent COS) — not tracked in git
+blog/
+hero.mp4
