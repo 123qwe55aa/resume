@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>梁国才 - 外贸简历</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23071526'/%3E%3Ccircle cx='8' cy='8' r='4' fill='%2399f6e4'/%3E%3C/svg%3E" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(180deg, #161616 0%, #202020 48%, #151515 100%);
+      color: rgb(246 247 248 / 0.92);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    p, h1, h2, h3 { margin: 0; }
+    .font-serif, h1, h2 { font-family: Georgia, "Times New Roman", ui-serif, serif; }
+    #video-bg video {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%; min-height: 100%;
+      object-fit: cover;
+      filter: brightness(.68) saturate(.9) contrast(.98);
+    }
+    #video-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: #000;
+      overflow: hidden;
+    }
+    #video-bg::before,
+    #video-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    #video-bg::before { background: rgba(235, 235, 235, 0.08); }
+    #video-bg::after {
+      background:
+        radial-gradient(ellipse 82% 70% at 18% 34%, rgba(20, 20, 20, .42), transparent 60%),
+        linear-gradient(90deg, rgba(16, 16, 16, .54) 0%, rgba(28, 28, 28, .24) 48%, rgba(240, 240, 240, .04) 100%),
+        linear-gradient(180deg, rgba(245,245,245,.05), rgba(20,20,20,.34));
+    }
+    #video-bg > div { display: none; }
+    body[data-loaded="true"] #loading {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .pointer-on { pointer-events: auto; }
+    .caustics {
+      position: fixed; inset: 0; pointer-events: none; z-index: 1;
+      background:
+        radial-gradient(ellipse 60% 50% at 30% 20%, rgba(255,255,255,0.06), transparent 50%),
+        radial-gradient(ellipse 50% 60% at 80% 60%, rgba(255,255,255,0.04), transparent 60%);
+      animation: caustic 15s ease-in-out infinite alternate;
+    }
+    @keyframes caustic {
+      0% { transform: translate(0,0) scale(1); }
+      50% { transform: translate(-20px,15px) scale(1.05); }
+      100% { transform: translate(15px,-10px) scale(0.98); }
+    }
+    .sunbeam {
+      position: fixed; top: 0; left: 50%; pointer-events: none; z-index: 1;
+      width: 120%; height: 70vh;
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), transparent 70%);
+      transform: translateX(-50%) rotate(8deg);
+      filter: blur(30px);
+    }
+    .scroll-reveal { margin: 0; }
+    .scroll-reveal-text { display: flex; flex-wrap: wrap; margin: 0; }
+    .word { display: inline-block; white-space: pre; }
+    #loading {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: grid;
+      place-items: center;
+      background: #181818;
+      transition: opacity .5s ease, visibility .5s ease;
+    }
+    #loading > div {
+      font-size: clamp(44px, 7vw, 80px);
+      font-style: italic;
+      color: rgba(239, 246, 255, .8);
+    }
+    header {
+      pointer-events: none;
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 20;
+      padding: 18px 20px;
+      background: linear-gradient(180deg, rgba(18, 18, 18, .52), rgba(18, 18, 18, 0));
+    }
+    nav {
+      width: min(100%, 1280px);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: rgba(250, 250, 250, .76);
+      text-shadow: 0 1px 18px rgba(0, 0, 0, .45);
+    }
+    nav > div {
+      display: flex;
+      gap: 32px;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .locale-switch {
+      pointer-events: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      padding: 3px;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(238,238,238,.10);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .locale-switch button {
+      appearance: none;
+      border: 0;
+      border-radius: 0;
+      padding: 7px 9px;
+      background: transparent;
+      color: rgba(250,250,250,.66);
+      font: inherit;
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .locale-switch button[aria-pressed="true"] {
+      background: rgba(250,250,250,.18);
+      color: rgba(250,250,250,.98);
+    }
+    .pointer-on { pointer-events: auto; }
+    nav a:hover, footer a:hover { color: rgba(239, 246, 255, 1); }
+    main, footer {
+      pointer-events: none;
+      position: relative;
+      z-index: 10;
+    }
+    main > section,
+    footer {
+      width: min(100%, 1280px);
+      margin: 0 auto;
+      padding: 96px 32px;
+      position: relative;
+      isolation: isolate;
+    }
+    main > section:not(:first-child)::before,
+    footer::before {
+      content: "";
+      position: absolute;
+      inset: 44px 20px;
+      z-index: -1;
+      border: 1px solid rgba(255, 255, 255, .22);
+      background:
+        linear-gradient(135deg, rgba(250, 250, 250, .15), rgba(238, 238, 238, .07)),
+        rgba(230, 230, 230, .08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 24px 90px rgba(0,0,0,.16);
+      backdrop-filter: blur(10px) saturate(120%);
+      -webkit-backdrop-filter: blur(10px) saturate(120%);
+    }
+    main > section:first-child {
+      min-height: 100vh;
+      display: grid;
+      align-content: end;
+      padding-top: 112px;
+      padding-bottom: 80px;
+    }
+    main > section:first-child > div { max-width: 1120px; }
+    main > section:first-child p:first-child,
+    section > div > p:first-child,
+    article > p:first-child {
+      font-size: 12px;
+      letter-spacing: .34em;
+      text-transform: uppercase;
+      color: rgba(244, 244, 244, .58);
+      text-shadow: 0 1px 14px rgba(0,0,0,.6);
+    }
+    h1 {
+      margin-top: 24px;
+      font-size: clamp(60px, 7.6vw, 98px);
+      line-height: .94;
+      color: rgba(248, 250, 252, .98);
+      font-weight: 400;
+      text-shadow: 0 10px 70px rgba(0,0,0,.62);
+    }
+    main > section:first-child p:nth-of-type(2) {
+      margin-top: 32px;
+      max-width: 720px;
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.65;
+      color: rgba(245, 247, 250, .88);
+      text-shadow: 0 2px 22px rgba(0,0,0,.55);
+    }
+    main > section:first-child span {
+      color: rgba(250, 250, 250, .96);
+      font-weight: 700;
+    }
+    main > section:first-child a {
+      pointer-events: auto;
+      display: inline-flex;
+      margin-top: 40px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(250, 250, 250, .62);
+      font-size: 14px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: rgba(250, 250, 250, .95);
+    }
+    main > section:nth-child(2) {
+      min-height: 100vh;
+      display: grid;
+      align-content: center;
+    }
+    main > section:nth-child(2) h2 {
+      font-size: clamp(54px, 9vw, 112px);
+      line-height: .9;
+      color: rgba(250, 250, 250, .92);
+      font-weight: 400;
+    }
+    #credentials, #work, #projects, #study, footer {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 56px;
+    }
+    #work { grid-template-columns: .8fr 1.2fr; }
+    #projects { grid-template-columns: .9fr 1.1fr; }
+    #skills {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+    }
+    #credentials h2, #work h2, #projects h2, #skills h2, #study h2, footer h2 {
+      margin-top: 16px;
+      font-size: clamp(58px, 7vw, 96px);
+      line-height: .94;
+      color: rgba(250, 250, 250, .98);
+      font-weight: 400;
+    }
+    #credentials > div:last-child {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    #credentials article {
+      border: 1px solid rgba(255, 255, 255, .24);
+      background: rgba(238, 238, 238, .12);
+      padding: 24px;
+      backdrop-filter: blur(10px) saturate(118%);
+      -webkit-backdrop-filter: blur(10px) saturate(118%);
+    }
+    #credentials article:nth-child(2) {
+      border-color: rgba(255, 255, 255, .34);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .20), rgba(230, 230, 230, .09)),
+        rgba(238, 238, 238, .13);
+    }
+    #credentials article:nth-child(3) {
+      grid-column: 1 / -1;
+      background: rgba(238, 238, 238, .10);
+    }
+    #credentials h3, #work h3, #projects h3 {
+      margin-top: 12px;
+      font-size: clamp(28px, 3vw, 36px);
+      line-height: 1.12;
+      color: rgba(250, 250, 250, .98);
+      font-weight: 600;
+    }
+    #credentials article:nth-child(2) h3 { font-size: clamp(38px, 4vw, 48px); }
+    #credentials article:nth-child(2) p:nth-of-type(2) {
+      margin-top: 12px;
+      font-size: 24px;
+      color: rgba(250, 250, 250, .92);
+    }
+    #credentials article p:last-child,
+    #work article p:last-child,
+    #projects article p:last-child,
+    #study div:last-child,
+    footer {
+      color: rgba(238, 238, 238, .80);
+    }
+    #credentials article p:last-child { margin-top: 16px; font-size: 18px; line-height: 1.7; }
+    #credentials article:nth-child(3) p:last-child { font-size: 20px; line-height: 1.8; }
+    #work > div:last-child, #projects > div:last-child {
+      display: grid;
+      gap: 44px;
+    }
+    #work article p:last-child, #projects article p:last-child {
+      margin-top: 16px;
+      max-width: 820px;
+      line-height: 1.85;
+      font-size: 17px;
+    }
+    #projects article {
+      border-top: 1px solid rgba(255, 255, 255, .24);
+      padding-top: 32px;
+    }
+    #skills > div:nth-child(2),
+    #skills > div:nth-child(3) {
+      display: grid;
+      gap: 20px;
+      font-size: 26px;
+      color: rgba(250, 250, 250, .86);
+    }
+    #study div:last-child {
+      align-self: end;
+      font-size: 22px;
+      line-height: 1.75;
+    }
+    #study div:last-child p + p { margin-top: 24px; }
+    footer {
+      padding-top: 80px;
+      padding-bottom: 80px;
+      color: rgba(238, 238, 238, .74);
+    }
+    footer > div {
+      display: grid;
+      gap: 48px;
+      justify-self: end;
+    }
+    footer > div > div:first-child {
+      display: grid;
+      gap: 16px;
+    }
+    footer a, footer p.text-xl {
+      pointer-events: auto;
+      color: rgba(250, 250, 250, .88);
+      font-size: 22px;
+    }
+    footer a:first-child { font-size: 28px; color: rgba(250, 250, 250, .98); }
+    footer > div > div:nth-child(2) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px 32px;
+      font-size: 14px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: rgba(235, 235, 235, .58);
+    }
+    footer > div > p:last-child {
+      font-size: 12px;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: rgba(235, 235, 235, .48);
+    }
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(30px);
+      transition:
+        opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: calc(var(--reveal-delay, 0) * 1s);
+    }
+    [data-reveal="visible"] { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .caustics { animation: none; }
+      [data-reveal] { transition: none; opacity: 1; transform: none; }
+    }
+    @media (max-width: 760px) {
+      header { padding: 18px; }
+      .nav-inner { gap: 14px; }
+      nav > .nav-inner > div:first-child { display: none; }
+      main > section, footer { padding: 84px 20px; }
+      #credentials, #work, #projects, #skills, #study, footer {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      #credentials > div:last-child { grid-template-columns: 1fr; }
+      #credentials article:nth-child(3) { grid-column: auto; }
+      h1 { font-size: clamp(64px, 18vw, 96px); }
+      main > section:nth-child(2) h2,
+      #credentials h2, #work h2, #projects h2, #skills h2, #study h2, footer h2 {
+        font-size: clamp(48px, 14vw, 72px);
+      }
+      footer > div { justify-self: stretch; }
+      footer > div > div:nth-child(2) { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="min-h-screen overflow-x-hidden antialiased">
+  <div id="video-bg" class="fixed inset-0 z-0 bg-black">
+    <video id="hero-video" muted playsinline preload="auto">
+      <source src="hero.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-[#071526]/50"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-[#071526]/20 via-[#0f2f47]/40 to-[#071526]/80"></div>
+  </div>
+  <div class="caustics"></div>
+  <div class="sunbeam"></div>
+
+  <div id="loading" class="fixed inset-0 z-50 grid place-items-center bg-[#071526] transition-opacity duration-500">
+    <div class="font-serif text-5xl italic text-blue-50/80">surface</div>
+  </div>
+
+  <header class="pointer-events-none fixed inset-x-0 top-0 z-20 px-5 py-5 md:px-8">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between text-xs uppercase tracking-[0.28em] text-blue-50/60">
+      <a href="#top" class="pointer-on" data-i18n="brand">梁国才</a>
+      <div class="nav-inner">
+        <div>
+          <a class="pointer-on hover:text-blue-50" href="#credentials" data-i18n="nav.education">教育</a>
+          <a class="pointer-on hover:text-blue-50" href="#work" data-i18n="nav.work">经历</a>
+          <a class="pointer-on hover:text-blue-50" href="#projects" data-i18n="nav.projects">项目</a>
+          <a class="pointer-on hover:text-blue-50" href="#skills" data-i18n="nav.skills">能力</a>
+          <a class="pointer-on hover:text-blue-50" href="#contact" data-i18n="nav.contact">联系</a>
+        </div>
+        <div class="locale-switch" aria-label="Language">
+          <button type="button" data-locale="zh" aria-pressed="true">中文</button>
+          <button type="button" data-locale="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top" class="pointer-events-none relative z-10">
+    <section class="mx-auto grid min-h-screen max-w-7xl content-end px-5 pb-16 pt-28 md:px-8 md:pb-20">
+      <div class="max-w-5xl">
+        <p class="mb-6 text-xs uppercase tracking-[0.4em] text-blue-100/55" data-i18n="hero.eyebrow">简历 / 外贸 / 客户服务</p>
+        <h1 class="font-serif text-[18vw] leading-[0.82] text-blue-50 md:text-[10rem]">
+          <span data-i18n="hero.title" data-i18n-html="true">梁国才。<br />沟通无国界。</span>
+        </h1>
+        <p class="mt-8 max-w-2xl text-lg leading-8 text-blue-100/75 md:text-2xl md:leading-10">
+          <span data-i18n="hero.body">英语 IELTS 6.0，具备电话客服经验与跨文化沟通能力。</span>
+          <span class="font-semibold text-blue-50/90" data-i18n="hero.strong">用语言和服务连接客户与业务。</span>
+        </p>
+        <a href="#contact" class="pointer-on mt-10 inline-flex border-b border-blue-100/55 pb-2 text-sm uppercase tracking-[0.28em] text-blue-50 hover:border-blue-50" data-i18n="hero.cta">联系我</a>
+      </div>
+    </section>
+
+    <section class="mx-auto grid min-h-screen max-w-7xl content-center px-5 py-24 md:px-8">
+      <h2 data-scroll-reveal data-text-class="font-serif text-[12vw] leading-[0.9] text-blue-50/90 md:text-[7rem]">
+        <span data-i18n="statement">英语工作能力、客户服务现场经验与材料工程学习背景：雅思 6.0、哈啰出行电话客服、粤语普通话双语，加上快速学习能力和技术适应力。</span>
+      </h2>
+    </section>
+
+    <section id="credentials" class="mx-auto grid max-w-7xl gap-10 px-5 py-24 md:grid-cols-[0.85fr_1.15fr] md:px-8">
+      <div data-reveal>
+        <p class="text-xs uppercase tracking-[0.35em] text-blue-100/50" data-i18n="credentials.eyebrow">优先展示</p>
+        <h2 class="mt-4 font-serif text-6xl leading-none text-blue-50 md:text-8xl" data-i18n="credentials.title">教育 / 语言</h2>
+      </div>
+      <div class="grid gap-5 text-blue-100/78 md:grid-cols-2">
+        <article data-reveal style="--reveal-delay: 0.1" class="border border-blue-100/15 bg-blue-50/[0.06] p-6 backdrop-blur">
+          <p class="text-xs uppercase tracking-[0.32em] text-teal-200/70" data-i18n="edu.school">大连工业大学</p>
+          <h3 class="mt-4 text-3xl font-semibold text-blue-50" data-i18n="edu.degree">无机非金属材料工程 本科</h3>
+          <p class="mt-4 leading-7" data-i18n="edu.body">预计 2026 年 6 月毕业，具备材料工程基础、数据分析与技术文档能力。</p>
+        </article>
+        <article data-reveal style="--reveal-delay: 0.18" class="border border-teal-200/25 bg-teal-200/[0.10] p-6 backdrop-blur">
+          <p class="text-xs uppercase tracking-[0.32em] text-teal-100/75" data-i18n="cert.eyebrow">语言能力</p>
+          <h3 class="mt-4 text-4xl font-semibold text-blue-50">IELTS 6.0</h3>
+          <p class="mt-3 text-2xl text-blue-50/90" data-i18n="cert.license">驾驶证</p>
+          <p class="mt-4 leading-7" data-i18n="cert.body">英语具备工作沟通与书面能力；普通话、粤语母语 / 双语；三语无障碍切换。</p>
+        </article>
+        <article data-reveal style="--reveal-delay: 0.24" class="border border-blue-100/15 bg-blue-50/[0.05] p-6 backdrop-blur md:col-span-2">
+          <p class="text-xs uppercase tracking-[0.32em] text-blue-100/50" data-i18n="course.eyebrow">核心课程</p>
+          <p class="mt-4 text-xl leading-9 text-blue-50/86" data-i18n="course.body">高等数学、大学物理、机械设计基础、无机材料科学基础，以及国际贸易相关自主学习。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="work" class="mx-auto grid max-w-7xl gap-14 px-5 py-24 md:grid-cols-[0.8fr_1.2fr] md:px-8">
+      <div data-reveal>
+        <p class="text-xs uppercase tracking-[0.35em] text-blue-100/50" data-i18n="work.eyebrow">相关工作经历</p>
+        <h2 class="mt-4 font-serif text-6xl text-blue-50 md:text-8xl" data-i18n="work.title">客服 / 配送 / 校园</h2>
+      </div>
+      <div class="space-y-12 text-blue-100/78">
+        <article data-reveal style="--reveal-delay: 0.1">
+          <p class="text-sm uppercase tracking-[0.3em] text-blue-50/50" data-i18n="work.hellobike.meta">哈啰出行 / 2024.08 - 2024.09</p>
+          <h3 class="mt-3 text-3xl text-blue-50" data-i18n="work.hellobike.role">电话客服代表</h3>
+          <p class="mt-4 max-w-2xl leading-8" data-i18n="work.hellobike.body">通过电话响应客户咨询与投诉，使用普通话和粤语进行沟通，准确记录客户需求，推动问题闭环。熟悉 CRM 系统操作，处理跨部门协调，日均处理 50+ 客户来电。</p>
+        </article>
+        <article data-reveal style="--reveal-delay: 0.2">
+          <p class="text-sm uppercase tracking-[0.3em] text-blue-50/50" data-i18n="work.meituan.meta">美团 / 2025.08 - 2025.09</p>
+          <h3 class="mt-3 text-3xl text-blue-50" data-i18n="work.meituan.role">配送骑手</h3>
+          <p class="mt-4 max-w-2xl leading-8" data-i18n="work.meituan.body">负责深圳区域餐饮订单配送，使用 GPS 规划最优路线，在时效压力下保持准确沟通与交付。锻炼了时间管理、路线优化与压力下执行能力。</p>
+        </article>
+        <article data-reveal style="--reveal-delay: 0.3">
+          <p class="text-sm uppercase tracking-[0.3em] text-blue-50/50" data-i18n="work.club.meta">e工大社团 / 2021</p>
+          <h3 class="mt-3 text-3xl text-blue-50" data-i18n="work.club.role">宿舍零食箱项目运营</h3>
+          <p class="mt-4 max-w-2xl leading-8" data-i18n="work.club.body">参与运营宿舍零食箱项目，负责补货与库存记录、日常管理与需求统计，培养了基本供应链思维与团队协作能力。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects" class="mx-auto grid max-w-7xl gap-14 px-5 py-24 md:grid-cols-[0.9fr_1.1fr] md:px-8">
+      <div data-reveal>
+        <p class="text-xs uppercase tracking-[0.35em] text-blue-100/50" data-i18n="projects.eyebrow">技术项目</p>
+        <h2 class="mt-4 font-serif text-6xl leading-none text-blue-50 md:text-8xl" data-i18n="projects.title">跨文化技术协作</h2>
+      </div>
+      <div class="space-y-10 text-blue-100/78">
+        <article data-reveal style="--reveal-delay: 0.1" class="border-t border-blue-100/20 pt-8">
+          <p class="text-sm uppercase tracking-[0.3em] text-blue-50/50" data-i18n="projects.hermes.meta">Hermes MCP Adapter / 2026.01 - 2026.07</p>
+          <h3 class="mt-3 text-3xl text-blue-50" data-i18n="projects.hermes.title">AI 代理中继服务</h3>
+          <p class="mt-4 max-w-3xl leading-8" data-i18n="projects.hermes.body">设计基于 StreamableHTTP 的 MCP 中继服务器，全英文技术文档撰写，使用 Node.js、TypeScript、Docker 部署，涉及 Cloudflare Tunnel 跨境网络配置。</p>
+        </article>
+        <article data-reveal style="--reveal-delay: 0.2" class="border-t border-blue-100/20 pt-8">
+          <p class="text-sm uppercase tracking-[0.3em] text-blue-50/50" data-i18n="projects.codeisland.meta">CodeIsland / 2026.03 - 2026.05</p>
+          <h3 class="mt-3 text-3xl text-blue-50" data-i18n="projects.codeisland.title">远程会话监控系统</h3>
+          <p class="mt-4 max-w-3xl leading-8" data-i18n="projects.codeisland.body">构建 SSH 反向隧道监控系统，涉及权限管理、日志分析与多设备消息同步，全部技术文档以英文编写，展示跨语言技术协作能力。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" class="mx-auto grid max-w-7xl gap-10 px-5 py-24 md:grid-cols-3 md:px-8">
+      <div data-reveal>
+        <p class="text-xs uppercase tracking-[0.35em] text-blue-100/50" data-i18n="skills.eyebrow">能力组合</p>
+        <h2 class="mt-4 font-serif text-6xl text-blue-50" data-i18n="skills.title">可迁移能力</h2>
+      </div>
+      <div data-reveal style="--reveal-delay: 0.1" class="space-y-5 text-2xl text-blue-50/82">
+        <p data-i18n="skills.cross">跨文化沟通</p>
+        <p data-i18n="skills.crm">CRM 系统操作</p>
+        <p data-i18n="skills.phone">电话客服技巧</p>
+        <p data-i18n="skills.digital">数字化工具使用</p>
+      </div>
+      <div data-reveal style="--reveal-delay: 0.2" class="space-y-5 text-2xl text-blue-50/82">
+        <p data-i18n="skills.english">英语工作沟通</p>
+        <p data-i18n="skills.project">项目管理</p>
+        <p data-i18n="skills.writing">技术文档写作</p>
+        <p data-i18n="skills.languages">普通话 / 粤语 / 英语</p>
+      </div>
+    </section>
+
+    <section id="study" class="mx-auto grid max-w-7xl gap-12 px-5 py-24 md:grid-cols-[1fr_1fr] md:px-8">
+      <div data-reveal>
+        <p class="text-xs uppercase tracking-[0.35em] text-blue-100/50" data-i18n="fit.eyebrow">岗位适配</p>
+        <h2 class="mt-4 font-serif text-6xl leading-none text-blue-50 md:text-8xl" data-i18n="fit.title">语言 + 服务 + 学习能力</h2>
+      </div>
+      <div data-reveal style="--reveal-delay: 0.15" class="self-end text-xl leading-9 text-blue-100/78">
+        <p data-i18n="fit.body1">能够用英语进行书面与口头工作沟通，具备客户服务电话经验与快速学习新工具的能力。</p>
+        <p class="mt-6" data-i18n="fit.body2">目标岗位：外贸助理、跨境电商运营、国际客服、外贸跟单、海外商务支持。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="pointer-events-none relative z-10 mx-auto grid max-w-7xl gap-10 px-5 py-20 text-blue-100/70 md:grid-cols-[1fr_1fr] md:px-8">
+    <h2 class="font-serif text-7xl leading-none text-blue-50 md:text-9xl" data-i18n="footer.title">准备好就联系。</h2>
+    <div class="grid content-between gap-12 md:justify-self-end">
+      <div class="space-y-4">
+        <a class="pointer-on block text-2xl text-blue-50 hover:text-blue-100" href="mailto:tobyrunninglc@gmail.com">tobyrunninglc@gmail.com</a>
+        <a class="pointer-on block text-xl text-blue-50/85 hover:text-blue-100" href="https://github.com/123qwe55aa">github.com/123qwe55aa</a>
+        <a class="pointer-on block text-xl text-blue-50/85 hover:text-blue-100" href="https://tobyleons.xyz">tobyleons.xyz</a>
+        <p class="text-xl text-blue-50/75">13356567960</p>
+      </div>
+      <div class="grid grid-cols-2 gap-8 text-sm uppercase tracking-[0.24em] text-blue-100/55">
+        <p data-i18n="footer.jiangmen">江门</p>
+        <p data-i18n="footer.dalian">大连</p>
+        <p data-i18n="footer.shenzhen">深圳</p>
+        <p>IELTS 6.0</p>
+        <p data-i18n="footer.license">驾驶证</p>
+        <p data-i18n="footer.tri">三语能力</p>
+        <p data-i18n="footer.trade">外贸 / 客服</p>
+      </div>
+      <p class="text-xs uppercase tracking-[0.3em] text-blue-100/45">© 2026 Guocai Liang</p>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      zh: {
+        "meta.title": "梁国才 - 外贸简历",
+        "brand": "梁国才",
+        "nav.education": "教育",
+        "nav.work": "经历",
+        "nav.projects": "项目",
+        "nav.skills": "能力",
+        "nav.contact": "联系",
+        "hero.eyebrow": "简历 / 外贸 / 客户服务",
+        "hero.title": "梁国才。<br />沟通无国界。",
+        "hero.body": "英语 IELTS 6.0，具备电话客服经验与跨文化沟通能力。",
+        "hero.strong": "用语言和服务连接客户与业务。",
+        "hero.cta": "联系我",
+        "statement": "英语工作能力、客户服务现场经验与材料工程学习背景：雅思 6.0、哈啰出行电话客服、粤语普通话双语，加上快速学习能力和技术适应力。",
+        "credentials.eyebrow": "优先展示",
+        "credentials.title": "教育 / 语言",
+        "edu.school": "大连工业大学",
+        "edu.degree": "无机非金属材料工程 本科",
+        "edu.body": "预计 2026 年 6 月毕业，具备材料工程基础、数据分析与技术文档能力。",
+        "cert.eyebrow": "语言能力",
+        "cert.license": "驾驶证",
+        "cert.body": "英语具备工作沟通与书面能力；普通话、粤语母语 / 双语；三语无障碍切换。",
+        "course.eyebrow": "核心课程",
+        "course.body": "高等数学、大学物理、机械设计基础、无机材料科学基础，以及国际贸易相关自主学习。",
+        "work.eyebrow": "相关工作经历",
+        "work.title": "客服 / 配送 / 校园",
+        "work.hellobike.meta": "哈啰出行 / 2024.08 - 2024.09",
+        "work.hellobike.role": "电话客服代表",
+        "work.hellobike.body": "通过电话响应客户咨询与投诉，使用普通话和粤语进行沟通，准确记录客户需求，推动问题闭环。熟悉 CRM 系统操作，处理跨部门协调，日均处理 50+ 客户来电。",
+        "work.meituan.meta": "美团 / 2025.08 - 2025.09",
+        "work.meituan.role": "配送骑手",
+        "work.meituan.body": "负责深圳区域餐饮订单配送，使用 GPS 规划最优路线，在时效压力下保持准确沟通与交付。锻炼了时间管理、路线优化与压力下执行能力。",
+        "work.club.meta": "e工大社团 / 2021",
+        "work.club.role": "宿舍零食箱项目运营",
+        "work.club.body": "参与运营宿舍零食箱项目，负责补货与库存记录、日常管理与需求统计，培养了基本供应链思维与团队协作能力。",
+        "projects.eyebrow": "技术项目",
+        "projects.title": "跨文化技术协作",
+        "projects.hermes.meta": "Hermes MCP Adapter / 2026.01 - 2026.07",
+        "projects.hermes.title": "AI 代理中继服务",
+        "projects.hermes.body": "设计基于 StreamableHTTP 的 MCP 中继服务器，全英文技术文档撰写，使用 Node.js、TypeScript、Docker 部署，涉及 Cloudflare Tunnel 跨境网络配置。",
+        "projects.codeisland.meta": "CodeIsland / 2026.03 - 2026.05",
+        "projects.codeisland.title": "远程会话监控系统",
+        "projects.codeisland.body": "构建 SSH 反向隧道监控系统，涉及权限管理、日志分析与多设备消息同步，全部技术文档以英文编写，展示跨语言技术协作能力。",
+        "skills.eyebrow": "能力组合",
+        "skills.title": "可迁移能力",
+        "skills.cross": "跨文化沟通",
+        "skills.crm": "CRM 系统操作",
+        "skills.phone": "电话客服技巧",
+        "skills.digital": "数字化工具使用",
+        "skills.english": "英语工作沟通",
+        "skills.project": "项目管理",
+        "skills.writing": "技术文档写作",
+        "skills.languages": "普通话 / 粤语 / 英语",
+        "fit.eyebrow": "岗位适配",
+        "fit.title": "语言 + 服务 + 学习能力",
+        "fit.body1": "能够用英语进行书面与口头工作沟通，具备客户服务电话经验与快速学习新工具的能力。",
+        "fit.body2": "目标岗位：外贸助理、跨境电商运营、国际客服、外贸跟单、海外商务支持。",
+        "footer.title": "准备好就联系。",
+        "footer.jiangmen": "江门",
+        "footer.dalian": "大连",
+        "footer.shenzhen": "深圳",
+        "footer.license": "驾驶证",
+        "footer.tri": "三语能力",
+        "footer.trade": "外贸 / 客服"
+      },
+      en: {
+        "meta.title": "Guocai Liang - Trade Resume",
+        "brand": "Guocai Liang",
+        "nav.education": "Education",
+        "nav.work": "Experience",
+        "nav.projects": "Projects",
+        "nav.skills": "Skills",
+        "nav.contact": "Contact",
+        "hero.eyebrow": "resume / international trade / customer service",
+        "hero.title": "Guocai Liang.<br />bridging languages.",
+        "hero.body": "IELTS 6.0, phone-based customer service experience, and cross-cultural communication skills.",
+        "hero.strong": "Connecting customers and business through language and service.",
+        "hero.cta": "Contact",
+        "statement": "English working proficiency, customer service field experience, and materials engineering background: IELTS 6.0, Hellobike phone support, Mandarin/Cantonese bilingual, plus fast learning and technical adaptability.",
+        "credentials.eyebrow": "priority signal",
+        "credentials.title": "education / languages",
+        "edu.school": "Dalian Polytechnic University",
+        "edu.degree": "B.E. Materials Engineering",
+        "edu.body": "Bachelor expected June 2026. Foundation in materials engineering, data analysis, and technical documentation.",
+        "cert.eyebrow": "language & licenses",
+        "cert.license": "Driver License",
+        "cert.body": "English working proficiency (written & spoken); Mandarin and Cantonese native / bilingual. Seamless trilingual switching.",
+        "course.eyebrow": "coursework",
+        "course.body": "Advanced Mathematics, College Physics, Mechanical Design Fundamentals, Materials Science, plus self-study in international trade.",
+        "work.eyebrow": "relevant experience",
+        "work.title": "service / logistics / campus",
+        "work.hellobike.meta": "Hellobike / Aug 2024 - Sep 2024",
+        "work.hellobike.role": "Phone Customer Service Representative",
+        "work.hellobike.body": "Handled inbound customer calls in Mandarin and Cantonese, logged cases in CRM, coordinated cross-department resolutions, and maintained 50+ daily call volume with clear documentation.",
+        "work.meituan.meta": "Meituan / Aug 2025 - Sep 2025",
+        "work.meituan.role": "Delivery Rider",
+        "work.meituan.body": "Delivered food orders across Shenzhen, optimized routes with GPS, maintained clear communication under time pressure — building time management and on-ground execution skills.",
+        "work.club.meta": "E-Gongda Club / 2021",
+        "work.club.role": "Dorm Snack Box Project Operator",
+        "work.club.body": "Supported a campus snack box project through inventory management, restocking, and demand tracking — developing basic supply chain thinking and teamwork.",
+        "projects.eyebrow": "technical projects",
+        "projects.title": "cross-cultural tech collaboration",
+        "projects.hermes.meta": "Hermes MCP Adapter / Jan 2026 - Jul 2026",
+        "projects.hermes.title": "AI Agent Relay Service",
+        "projects.hermes.body": "Designed a StreamableHTTP-based MCP relay server with full English technical documentation. Built with Node.js, TypeScript, Docker, and Cloudflare Tunnel for cross-border networking.",
+        "projects.codeisland.meta": "CodeIsland / Mar 2026 - May 2026",
+        "projects.codeisland.title": "Remote Session Monitor",
+        "projects.codeisland.body": "Built an SSH reverse-tunnel monitoring system with permission management and log analysis. All technical documentation written in English, demonstrating cross-language technical collaboration.",
+        "skills.eyebrow": "capability set",
+        "skills.title": "transferable skills",
+        "skills.cross": "Cross-cultural communication",
+        "skills.crm": "CRM systems",
+        "skills.phone": "Phone support skills",
+        "skills.digital": "Digital tool adoption",
+        "skills.english": "English working proficiency",
+        "skills.project": "Project management",
+        "skills.writing": "Technical writing",
+        "skills.languages": "Mandarin / Cantonese / English",
+        "fit.eyebrow": "fit",
+        "fit.title": "language + service + adaptability",
+        "fit.body1": "Able to communicate in English for both written and verbal work, with customer service phone experience and a track record of quickly learning new tools.",
+        "fit.body2": "Target roles: trade assistant, cross-border e-commerce operations, international customer service, order follow-up, overseas business support.",
+        "footer.title": "surface when ready.",
+        "footer.jiangmen": "Jiangmen",
+        "footer.dalian": "Dalian",
+        "footer.shenzhen": "Shenzhen",
+        "footer.license": "Driver license",
+        "footer.tri": "Trilingual",
+        "footer.trade": "Trade / Service"
+      }
+    };
+
+    const applyLocale = (locale) => {
+      const nextLocale = locale === 'en' ? 'en' : 'zh';
+      const dict = translations[nextLocale];
+      document.documentElement.lang = nextLocale === 'zh' ? 'zh-CN' : 'en';
+      document.title = dict["meta.title"];
+      document.querySelectorAll('[data-i18n]').forEach((node) => {
+        const value = dict[node.dataset.i18n];
+        if (!value) return;
+        if (node.dataset.i18nHtml === 'true') node.innerHTML = value;
+        else node.textContent = value;
+      });
+      document.querySelectorAll('[data-locale]').forEach((button) => {
+        button.setAttribute('aria-pressed', String(button.dataset.locale === nextLocale));
+      });
+      localStorage.setItem('resume-locale', nextLocale);
+    };
+
+    const savedLocale = localStorage.getItem('resume-locale');
+    applyLocale(savedLocale || 'zh');
+    document.querySelectorAll('[data-locale]').forEach((button) => {
+      button.addEventListener('click', () => applyLocale(button.dataset.locale));
+    });
+
+    const video = document.getElementById('hero-video');
+    let isLoaded = false;
+    const handleLoaded = () => {
+      if (isLoaded) return;
+      isLoaded = true;
+      document.body.dataset.loaded = 'true';
+    };
+    if (video) {
+      video.addEventListener('loadeddata', handleLoaded);
+      video.addEventListener('canplay', handleLoaded);
+      video.addEventListener('canplaythrough', handleLoaded);
+      video.load();
+    }
+    setTimeout(handleLoaded, 3000);
+
+    let ticking = false;
+    const syncVideoToScroll = () => {
+      ticking = false;
+      if (!isLoaded || !video || !video.duration || video.seeking) return;
+      const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      const scrollFraction = Math.max(0, Math.min(1, window.scrollY / maxScroll));
+      video.currentTime = scrollFraction * video.duration;
+    };
+    const requestVideoSync = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(syncVideoToScroll);
+    };
+    window.addEventListener('scroll', requestVideoSync, { passive: true });
+    window.addEventListener('resize', requestVideoSync);
+    video?.addEventListener('loadedmetadata', requestVideoSync);
+    video?.addEventListener('canplay', requestVideoSync);
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.dataset.reveal = 'visible';
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '-50px' });
+    document.querySelectorAll('[data-reveal]').forEach((el) => revealObserver.observe(el));
+  </script>
+</body>
+</html>
