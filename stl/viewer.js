@@ -172,7 +172,8 @@ function start() {
         if (revision !== revisions[i]) return;
         await load(new File([blob], name), i, revision);
         if (revision !== revisions[i] || status.classList.contains('error')) return;
-        download.href = 'https://cdn.tobyleons.xyz/models/lekiwi/' + encodeURIComponent(name);
+        download.href = './models/' + encodeURIComponent(name);
+        download.download = name;
         download.hidden = false;
       } catch {
         if (revision === revisions[i]) message('公开模型加载失败，请重试或选择本地 STL。', true);

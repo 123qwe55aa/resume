@@ -545,10 +545,6 @@
       transform: translateY(-2px);
       border-color: rgba(255,255,255,.34);
     }
-    #stl-downloads { scroll-margin-top: 90px; }
-    .stl-download-actions { grid-template-columns: 1fr; }
-    .stl-download-actions small { overflow-wrap: anywhere; color: rgba(238,238,238,.58); font-size: 12px; }
-    .stl-preview { display: inline-block; margin-top: 18px; color: #99f6e4; font-size: 13px; }
     .footer-tags {
       display: flex;
       flex-wrap: wrap;
@@ -628,7 +624,7 @@
           <a class="pointer-on hover:text-blue-50" href="#contact" data-i18n="nav.contact">联系</a>
           <a class="pointer-on hover:text-blue-50" href="https://cdn.tobyleons.xyz/blog/index.html" target="_blank">📖 精读</a>
         </div>
-        <a class="pointer-on" href="#stl-downloads" data-i18n="nav.stl" style="letter-spacing:.08em;white-space:nowrap">STL 下载</a>
+        <a class="pointer-on" href="/stl/" data-i18n="nav.stl" style="letter-spacing:.08em;white-space:nowrap">STL 查看器</a>
         <div class="locale-switch" aria-label="Language">
           <button type="button" data-locale="zh" aria-pressed="true">中文</button>
           <button type="button" data-locale="en" aria-pressed="false">EN</button>
@@ -829,34 +825,9 @@
           </div>
         </section>
 
-        <section id="stl-downloads" class="footer-card stl-download-card" data-reveal style="--reveal-delay: 0.22">
-          <div class="footer-card-head">
-            <span>03</span>
-            <h3 data-i18n="stl.title">Lekiwi · STL 下载</h3>
-          </div>
-          <div class="resume-actions stl-download-actions">
-            <a class="resume-button pointer-on" href="/stl/models/base_plate_layer1.stl" download="base_plate_layer1.stl">
-              <span data-i18n="stl.layer1">底板 · 第 1 层</span>
-              <small>base_plate_layer1.stl</small>
-              <em data-i18n="stl.download">下载 STL</em>
-            </a>
-            <a class="resume-button pointer-on" href="/stl/models/base_plate_layer2.stl" download="base_plate_layer2.stl">
-              <span data-i18n="stl.layer2">底板 · 第 2 层</span>
-              <small>base_plate_layer2.stl</small>
-              <em data-i18n="stl.download">下载 STL</em>
-            </a>
-            <a class="resume-button pointer-on" href="/stl/models/drive_motor_mount_v2.stl" download="drive_motor_mount_v2.stl">
-              <span data-i18n="stl.motor">驱动电机支架 · V2</span>
-              <small>drive_motor_mount_v2.stl</small>
-              <em data-i18n="stl.download">下载 STL</em>
-            </a>
-          </div>
-          <a class="stl-preview pointer-on" href="/stl/" data-i18n="stl.preview">在线预览模型 ↗</a>
-        </section>
-
         <section class="footer-card other-card" data-reveal style="--reveal-delay: 0.26">
           <div class="footer-card-head">
-            <span>04</span>
+            <span>03</span>
             <h3>&#20854;&#20182;&#20449;&#24687;</h3>
           </div>
 
@@ -892,7 +863,7 @@
         "nav.projects": "项目",
         "nav.skills": "能力",
         "nav.contact": "联系",
-        "nav.stl": "STL 下载",
+        "nav.stl": "STL 查看器",
         "hero.eyebrow": "简历 / 服务运营 / 材料工程",
         "hero.title": "梁国才",
         "hero.body": "具备客户服务、现场执行、项目协助与材料工程学习背景。稳定处理压力，",
@@ -954,12 +925,6 @@
         "fit.title": "服务运营能力，加上工程底色",
         "fit.body1": "能够处理现场执行、客户沟通、技术文档和结构化问题记录。",
         "fit.body2": "目标岗位：服务运营、项目协助、质量支持、材料相关初级岗位。",
-        "stl.title": "Lekiwi · STL 下载",
-        "stl.layer1": "底板 · 第 1 层",
-        "stl.layer2": "底板 · 第 2 层",
-        "stl.motor": "驱动电机支架 · V2",
-        "stl.download": "下载 STL",
-        "stl.preview": "在线预览模型 ↗",
         "footer.title": "准备好就联系。",
         "footer.jiangmen": "江门",
         "footer.dalian": "大连",
@@ -976,7 +941,7 @@
         "nav.projects": "Projects",
         "nav.skills": "Skills",
         "nav.contact": "Contact",
-        "nav.stl": "STL Downloads",
+        "nav.stl": "STL Viewer",
         "hero.eyebrow": "resume / service operations / materials engineering",
         "hero.title": "Guocai Liang",
         "hero.body": "Customer service, field operations, project support, and materials engineering training. Steady under pressure,",
@@ -1038,12 +1003,6 @@
         "fit.title": "service operations with an engineering base",
         "fit.body1": "Comfortable with practical field execution, customer-facing communication, technical documentation, and structured problem records.",
         "fit.body2": "Target roles: service operations, project support, quality support, and materials-related entry-level positions.",
-        "stl.title": "Lekiwi · STL Downloads",
-        "stl.layer1": "Base plate · Layer 1",
-        "stl.layer2": "Base plate · Layer 2",
-        "stl.motor": "Drive motor mount · V2",
-        "stl.download": "Download STL",
-        "stl.preview": "Preview models online ↗",
         "footer.title": "surface when ready.",
         "footer.jiangmen": "Jiangmen",
         "footer.dalian": "Dalian",
