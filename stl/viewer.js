@@ -115,11 +115,10 @@ function start() {
     slots[i].mesh.material.dispose();
     slots[i] = null;
   }
-  async function load(file, i) {
+  async function load(file, i, revision = ++revisions[i]) {
     if (!file) return;
     const error = fileError(file);
     if (error) { message(error, true); return; }
-    const revision = ++revisions[i];
     message(`正在读取模型 ${i === 0 ? 'A' : 'B'}：${file.name}`);
     let geometry;
     try {
@@ -157,12 +156,35 @@ function start() {
   }
   cards.forEach((card, i) => {
     const input = card.querySelector('input[type=file]');
-    input.addEventListener('change', () => { load(input.files[0], i); input.value = ''; });
+    const catalog = card.querySelector('.catalog');
+    const download = card.querySelector('.download');
+    const clearCatalog = () => { catalog.value = ''; download.hidden = true; };
+    catalog.addEventListener('change', async () => {
+      const name = catalog.value;
+      download.hidden = true;
+      if (!name) return;
+      const revision = ++revisions[i];
+      message('正在加载公开模型…');
+      try {
+        const response = await fetch('./models/' + encodeURIComponent(name));
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        const blob = await response.blob();
+        if (revision !== revisions[i]) return;
+        await load(new File([blob], name), i, revision);
+        if (revision !== revisions[i] || status.classList.contains('error')) return;
+        download.href = 'https://cdn.tobyleons.xyz/models/lekiwi/' + encodeURIComponent(name);
+        download.hidden = false;
+      } catch {
+        if (revision === revisions[i]) message('公开模型加载失败，请重试或选择本地 STL。', true);
+      }
+    });
+    input.addEventListener('change', () => { clearCatalog(); load(input.files[0], i); input.value = ''; });
     card.querySelector('.visible').addEventListener('change', e => {
       if (slots[i]) { slots[i].mesh.visible = e.target.checked; fit(); }
     });
     card.querySelector('.remove').addEventListener('click', () => {
       revisions[i]++;
+      clearCatalog();
       dispose(i);
       card.querySelector('.filename').textContent = '尚未加载';
       card.querySelector('.details').textContent = 'ASCII / Binary · 最大 100 MB';
@@ -178,6 +200,7 @@ function start() {
     zone.addEventListener('drop', e => {
       e.preventDefault(); zone.classList.remove('dragover');
       if (e.dataTransfer.files.length !== 1) { message('每个模型位置请选择一个 STL。', true); return; }
+      clearCatalog();
       load(e.dataTransfer.files[0], i);
     });
   });
@@ -186,8 +209,9 @@ function start() {
     e.preventDefault();
     const files = [...e.dataTransfer.files];
     if (files.length > 2) { message('一次最多选择两个 STL。', true); return; }
-    if (files.length === 2) files.forEach((file,i) => load(file,i));
-    else if (files.length === 1) load(files[0], slots[0] ? 1 : 0);
+    const localLoad = (file, i) => { cards[i].querySelector('.catalog').value = ''; cards[i].querySelector('.download').hidden = true; load(file, i); };
+    if (files.length === 2) files.forEach(localLoad);
+    else if (files.length === 1) localLoad(files[0], slots[0] ? 1 : 0);
   });
   document.querySelectorAll('[data-mode]').forEach(button => button.addEventListener('click', () => {
     mode = button.dataset.mode;

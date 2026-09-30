@@ -13,3 +13,5 @@ Run locally: `python3 -m http.server 8765`
 Run checks: `node --test tests/*.test.mjs`
 
 Deployment is triggered through Coolify after pushing `cdn`; this application has no push webhook. Previous version before the STL viewer: `e6cc92bce1ca2064da4fcf05faf014240f61c18e`.
+
+Public Lekiwi models are published under `https://cdn.tobyleons.xyz/models/lekiwi/`. The viewer uses identical copies in `stl/models/` because the CDN has no Access-Control-Allow-Origin header and the available key cannot read bucket CORS settings (403). Download links point to the CDN.
