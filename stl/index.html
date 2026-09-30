@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STL 查看器 · 梁国才</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%2317191b'/%3E%3Ccircle cx='8' cy='8' r='4' fill='%2399f6e4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="./viewer.css">
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+</head>
+<body>
+<header><a href="/">← 返回个人主页</a><span>TOBY / MODEL LAB</span><span class="local"><i></i> 本地文件 · 无需上传服务器</span></header>
+<main>
+<aside>
+<div class="intro"><p class="eyebrow">01 — MODEL INSPECTION</p><h1>看见结构。<br><em>比较细节。</em></h1><p>加载两个 STL，在同一空间里查看你的模型。</p></div>
+<div class="model-card" data-slot="0"><div class="card-head"><h2><i class="dot a"></i>模型 A</h2><span>01</span></div><label class="dropzone">点击选择或拖入 STL<input type="file" accept=".stl" aria-label="选择模型 A STL"></label><p class="filename">尚未加载</p><p class="details">ASCII / Binary · 最大 100 MB</p><div class="model-actions"><label><input class="visible" type="checkbox" checked disabled> 显示模型</label><button class="remove" disabled>移除</button></div></div>
+<div class="model-card" data-slot="1"><div class="card-head"><h2><i class="dot b"></i>模型 B</h2><span>02</span></div><label class="dropzone">点击选择或拖入 STL<input type="file" accept=".stl" aria-label="选择模型 B STL"></label><p class="filename">尚未加载</p><p class="details">ASCII / Binary · 最大 100 MB</p><div class="model-actions"><label><input class="visible" type="checkbox" checked disabled> 显示模型</label><button class="remove" disabled>移除</button></div></div>
+<p class="note">保留原始尺寸比例。STL 不含单位，尺寸按文件坐标显示；请使用相同单位导出两个模型。</p>
+<div id="status" role="status" aria-live="polite">准备就绪，选择你的第一个模型。</div>
+</aside>
+<section class="workspace" aria-label="三维模型查看区域">
+<div class="toolbar"><div class="mode" role="group" aria-label="显示模式"><button data-mode="side" aria-pressed="true">并排查看</button><button data-mode="overlay" aria-pressed="false">原位叠加</button></div><div class="tools"><label><input id="wireframe" type="checkbox">线框</label><label><input id="transparent" type="checkbox">半透明</label><button id="fit">适应视图 ↗</button></div></div>
+<div id="viewport"><div id="empty"><div class="empty-symbol">◇</div><p>你的模型，从这里开始。</p><span>从左侧加载 STL，或将最多两个文件拖入此处</span></div><div id="webgl-error" hidden>无法启动 3D 查看器，请使用支持 WebGL 的浏览器并启用硬件加速。</div><div class="viewport-tag">PERSPECTIVE / Z UP</div></div>
+<div class="view-footer"><span><i class="dot a"></i>A <i class="dot b"></i>B <span id="count">0 个模型</span></span><span>左键旋转 · 滚轮缩放 · 右键平移 <span class="touch-hint">/ 触屏：单指旋转，双指缩放和平移</span></span></div>
+</section>
+</main>
+<script type="module" src="./viewer.js"></script>
+</body></html>

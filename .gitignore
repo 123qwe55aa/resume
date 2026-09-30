@@ -1,8 +1,12 @@
-# cdn branch - single HTML site
-# Only the static HTML build is tracked; assets are served via CDN
+# Static website assets explicitly tracked below. Large media stays on COS.
 *
+!/.gitignore
 !/index.html
-
-# Assets served via CDN (Tencent COS) — not tracked in git
+!/index-trade.html
+!/README.md
+!/stl/
+!/stl/**
+!/tests/
+!/tests/*.test.mjs
 blog/
 hero.mp4
